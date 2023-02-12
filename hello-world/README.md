@@ -1,4 +1,4 @@
-# Hello
+# Hello World
 
 Simple Hello world script from [go.dev](https://go.dev/doc/tutorial/getting-started)
 
