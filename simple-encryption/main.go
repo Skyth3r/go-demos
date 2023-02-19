@@ -19,7 +19,7 @@ func main() {
 
 	fmt.Printf("Plain Text: %s\n", plainText)
 	fmt.Printf("Encrypted message: %x\n", encryptedMessage)
-	fmt.Printf("Decrypted message: %x\n", decryptedMessage)
+	fmt.Printf("Decrypted message: %s\n", decryptedMessage)
 }
 
 func hashPass(pass string) string {
@@ -41,11 +41,9 @@ func encryptMessage(message string, pass string) string {
 	}
 
 	non := make([]byte, aesgcm.NonceSize())
-	if _, err := io.ReadFull(rand.Reader, non); err != nil {
-		log.Fatal(err)
-	}
+	io.ReadFull(rand.Reader, non)
 
-	cipherText := aesgcm.Seal(nil, non, []byte(message), nil)
+	cipherText := aesgcm.Seal(non, non, []byte(message), nil)
 	return string(cipherText)
 }
 
