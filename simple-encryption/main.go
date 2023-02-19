@@ -23,13 +23,14 @@ func main() {
 }
 
 func hashPass(pass string) string {
-	sha256Pass := sha256.Sum256([]byte(pass))
-	hashedPassByte := sha256Pass[:]
-	return string(hashedPassByte)
+	hashedpass := sha256.Sum256([]byte(pass))
+	hashedBytes := hashedpass[:]
+	return string(hashedBytes)
 }
 
 func encryptMessage(message string, pass string) string {
 	encrpytionKey := hashPass(pass)
+
 	cipherBlock, err := aes.NewCipher([]byte(encrpytionKey))
 	if err != nil {
 		log.Fatal(err)
@@ -50,6 +51,7 @@ func encryptMessage(message string, pass string) string {
 func decryptMessage(message string, pass string) string {
 	byteMessage := []byte(message)
 	encrpytionKey := hashPass(pass)
+
 	cipherBlock, err := aes.NewCipher([]byte(encrpytionKey))
 	if err != nil {
 		log.Fatal(err)
