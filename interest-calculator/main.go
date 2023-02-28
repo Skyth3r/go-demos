@@ -7,9 +7,9 @@ import (
 )
 
 func main() {
-	balance, _ := strconv.Atoi(os.Args[1])
+	balance, _ := strconv.ParseFloat(os.Args[1], 64)
 	interestRate, _ := strconv.ParseFloat(os.Args[2], 64)
-	newBalance := float64(balance) + (float64(balance) * (interestRate / 100))
+	newBalance := balance + (balance * (interestRate / 100))
 
 	fmt.Printf("Balance: %.2f\n", newBalance)
 }
