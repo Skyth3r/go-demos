@@ -2,14 +2,22 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"os"
 	"strconv"
 )
 
 func main() {
-	balance, _ := strconv.ParseFloat(os.Args[1], 64)
-	interestRate, _ := strconv.ParseFloat(os.Args[2], 64)
-	newBalance := balance + (balance * (interestRate / 100))
+	// TODO add flags
+	balance, err := strconv.ParseFloat(os.Args[1], 64)
+	if err != nil {
+		log.Fatal(err)
+	}
+	interestRate, err := strconv.ParseFloat(os.Args[2], 64)
+	if err != nil {
+		log.Fatal(err)
+	}
+	updatedBalance := balance + (balance * (interestRate / 100))
 
-	fmt.Printf("Balance: %.2f\n", newBalance)
+	fmt.Printf("Balance: %.2f\n", updatedBalance)
 }
