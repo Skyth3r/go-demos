@@ -4,6 +4,6 @@
 
 The program can be run by entering `go run main.go [BALANCE_NUMBER] [INTEREST_RATE]"`
 
-**Example usage with flags**
+**Example usage**
 
 `go run main.go 1000 4.00`
