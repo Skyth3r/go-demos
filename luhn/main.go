@@ -7,7 +7,7 @@ import (
 )
 
 func main() {
-	inputString := "4003600000000014"
+	inputString := "4242424242424242"
 	stringBytes := strings.Split(inputString, "")
 	intBytes := make([]int, len(stringBytes))
 	checksum := 0
@@ -17,10 +17,14 @@ func main() {
 	}
 
 	for index, value := range intBytes {
-		if index%2 != 0 {
-			// TODO add a check for if value * 2 is larger than 9
+		if index%2 == 0 {
 			if value*2 > 9 {
-				// TODO split number and add the digits together
+				addDigits := 0
+				for value > 0 {
+					addDigits += value % 10
+					value /= 10
+				}
+				checksum += addDigits
 			} else {
 				checksum += value * 2
 			}
@@ -29,11 +33,9 @@ func main() {
 		}
 	}
 
-	fmt.Printf("Checksum: %d\n", checksum)
-
-	if checksum%10 != 0 {
-		fmt.Print("Not a valid card number\n")
-	} else {
+	if checksum%10 == 0 {
 		fmt.Print("Valid card number\n")
+	} else {
+		fmt.Print("Not a valid card number\n")
 	}
 }
