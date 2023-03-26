@@ -6,9 +6,12 @@ import (
 	"os"
 	"sort"
 	"strconv"
+	"time"
 )
 
 func main() {
+	now := time.Now()
+	rand.Seed(now.UnixNano())
 	sliceSize, _ := strconv.Atoi(os.Args[1])
 	randLimit, _ := strconv.Atoi(os.Args[2])
 	intSlice := make([]int, sliceSize)
